@@ -1,0 +1,10 @@
+name = "lockrace-game-fetcher"
+main = "src/index.ts"
+compatibility_date = "2023-05-11"
+
+kv_namespaces = [
+  { binding = "DB", id = "3bec0009978745ef876f8fbcf6f1797f", preview_id = "0af4885463454e4abe264658308e90cf" }
+]
+
+[triggers]
+crons = [ "1 * * * *" ]
