@@ -14,7 +14,7 @@
   "scripts": {
     "start": "wrangler dev --local",
     "deploy": "wrangler publish",
-    "test": "vitest run --coverage",
+    "test": "npx rome ci ./src && vitest run --coverage",
     "format": "npx rome format ./src --write",
     "lint": "npx rome check --apply-unsafe ./src"
   },
