@@ -1,5 +1,5 @@
-import { rest } from "msw";
 import { generateFetchGamesResponse } from "../fixtures/fetch-games-response";
+import { rest } from "msw";
 
 export const gameHandlers = [
   rest.get("http://localhost/games/200", (_req, res, ctx) => {

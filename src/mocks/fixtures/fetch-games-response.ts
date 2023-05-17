@@ -1,5 +1,5 @@
-import { createFixture } from "zod-fixture";
 import { FetchGamesResponse } from "../../schemas/fetch-games.schema";
+import { createFixture } from "zod-fixture";
 
 export const generateFetchGamesResponse = () => {
   const fixture = createFixture(FetchGamesResponse);
