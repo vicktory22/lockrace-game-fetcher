@@ -3,13 +3,15 @@ name: ci
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
+
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      GAMES_URL: ${{ vars.GAMES_URL }}
 
     strategy:
       matrix:
@@ -27,3 +29,4 @@ jobs:
         cache: 'pnpm'
     - run: pnpm install
     - run: pnpm test -- --run
+    - run: npx wrangler publish
