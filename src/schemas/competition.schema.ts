@@ -6,5 +6,5 @@ export type Competition = typeof Competition;
 
 export const Competition = z.object({
   competitors: z.array(Competitor).max(2).min(2),
-  odds: z.array(Odd),
+  odds: z.array(Odd).optional(),
 });
