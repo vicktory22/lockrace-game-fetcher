@@ -44,15 +44,9 @@ const parseGames = (games: Event[]): Game[] => games.map(parseGame);
 
 const parseGame = (game: Event): Game => {
   const competition = game.competitions[0];
-  const consensusOdds = competition.odds.find((odd) => odd.provider.name === "consensus");
+  const consensusOdds = competition.odds?.find((odd) => odd.provider.name === "consensus");
 
-  /* c8 ignore next 4 */
-  // coverage for this proivded in zod schema
-  if (!consensusOdds) {
-    throw new Error("No consensus odds provider found");
-  }
-
-  const { awayTeamOdds, homeTeamOdds } = consensusOdds;
+  const { awayTeamOdds, homeTeamOdds } = consensusOdds || {};
   const [{ team: homeTeam }, { team: awayTeam }] = competition.competitors;
 
   return {
