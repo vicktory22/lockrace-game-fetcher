@@ -19,6 +19,8 @@
     "lint": "npx rome check --apply-unsafe ./src"
   },
   "dependencies": {
+    "pino": "^8.14.1",
+    "pino-loki": "^2.0.4",
     "zod": "^3.21.4"
   }
 }
