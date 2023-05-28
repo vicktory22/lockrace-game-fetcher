@@ -1,5 +1,5 @@
-import { getGames } from "./games";
-import { server } from "./mocks/server";
+import { getGames } from "../games";
+import { server } from "../mocks/server";
 import { afterAll, afterEach, beforeAll, describe, expect, it } from "vitest";
 import { ZodError } from "zod";
 
