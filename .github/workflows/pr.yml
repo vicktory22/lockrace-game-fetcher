@@ -9,6 +9,12 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    env:
+      VITE_GAMES_URL: ${{ secrets.VITE_GAMES_URL }}
+      VITE_LOKI_USER: ${{ secrets. VITE_LOKI_USER }}
+      VITE_LOKI_API_KEY: ${{ secrets.VITE_LOKI_API_KEY }}
+      VITE_LOKI_URL: ${{ secrets.VITE_LOKI_URL }}
+
     strategy:
       matrix:
         node-version: [18.16.0]
