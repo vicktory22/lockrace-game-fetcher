@@ -14,7 +14,8 @@
 		"moduleResolution": "node" /* Specify how TypeScript looks up a file from a given module specifier. */,
 		"types": [
 			"@cloudflare/workers-types",
-      "vitest"
+      "vitest",
+      "vite/client"
 		] /* Specify type package names to be included without being referenced in a source file. */,
 		"resolveJsonModule": true /* Enable importing .json files */,
 
