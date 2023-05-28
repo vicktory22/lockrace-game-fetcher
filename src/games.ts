@@ -2,31 +2,28 @@ import { Err, Ok, Result, encasePromise } from "./result";
 import { Event } from "./schemas/event.schema";
 import { FetchGamesResponse } from "./schemas/fetch-games.schema";
 import { Game, GetGamesResponse } from "./types";
+import { fetchWithTimeout } from "./utils/fetcher";
 
 export const getGames = async (gamesUrl: string): Promise<Result<GetGamesResponse, Error>> => {
-  const [fetchResponse, fetchNetworkError] = await encasePromise(fetch(gamesUrl));
+  const [fetchResponse, fetchNetworkError] = await encasePromise(fetchWithTimeout(gamesUrl));
 
   if (fetchNetworkError) {
-    // TODO - add logging
     return Err(fetchNetworkError);
   }
 
   if (!fetchResponse.ok) {
-    // TODO - add logging
     return Err(new Error(`${fetchResponse.status} - ${fetchResponse.statusText}`));
   }
 
   const [jsonResponse, jsonParsingError] = await encasePromise<FetchGamesResponse>(fetchResponse.json());
 
   if (jsonParsingError) {
-    // TODO - add logging
     return Err(jsonParsingError);
   }
 
   const [validatedResponse, validationError] = await encasePromise(FetchGamesResponse.parseAsync(jsonResponse));
 
   if (validationError) {
-    // TODO - add logging
     return Err(validationError);
   }
 
