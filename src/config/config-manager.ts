@@ -1,5 +1,6 @@
 /* c8 ignore start */
 import { Env } from "../index";
+import { isTestEnv } from "../utils/testing-setup";
 
 export type AppConfig = {
   gamesUrl: string;
@@ -8,7 +9,7 @@ export type AppConfig = {
 };
 
 export const getConfig = (env?: Env): AppConfig => {
-  if (import.meta.env.NODE_ENV === "test") {
+  if (isTestEnv()) {
     return testConfig(env);
   }
 
