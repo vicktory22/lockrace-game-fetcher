@@ -1,6 +1,6 @@
 import { getGames } from "../games";
 import { server } from "../mocks/server";
-import { afterAll, afterEach, beforeAll, describe, expect, it } from "vitest";
+import { afterAll, afterEach, assert, beforeAll, describe, expect, it } from "vitest";
 import { ZodError } from "zod";
 
 describe("getGames", () => {
@@ -53,5 +53,18 @@ describe("getGames", () => {
 
     expect(response).toBeUndefined();
     expect(error).toBeDefined();
+  });
+
+  it("should handle when there are no odds in the payload", async () => {
+    const [response, error] = await getGames("http://localhost/games/no-odds");
+
+    expect(error).toBeUndefined();
+
+    assert(response);
+
+    const { away_odds, home_odds } = response.games[0];
+
+    expect(away_odds).toBeUndefined();
+    expect(home_odds).toBeUndefined();
   });
 });
