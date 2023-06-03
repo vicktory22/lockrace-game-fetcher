@@ -14,6 +14,12 @@ export const gameHandlers = [
   rest.get("http://localhost/games/invalid-response", (_req, res, ctx) => {
     return res(ctx.json(invalidGame));
   }),
+
+  rest.get("http://localhost/games/no-odds", (_req, res, ctx) => {
+    const fetchGamesResponse = generateFetchGamesResponse();
+    fetchGamesResponse.events[0].competitions[0].odds = undefined;
+    return res(ctx.json(fetchGamesResponse));
+  }),
 ];
 
 const invalidGame = {
