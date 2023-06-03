@@ -1,8 +1,9 @@
 import { AppConfig } from "../config/config-manager";
 import { encasePromise } from "../result";
 import { fetchWithTimeout } from "../utils/fetcher";
+import { type Logger } from "./logger-manager";
 
-export const lokiLogger = (config: AppConfig) => {
+export const lokiLogger = (config: AppConfig): Logger => {
   return {
     info: (message: string) => sendToLoki(message, "info", config),
     error: (error: Error) => sendToLoki(error.message, "error", config),
