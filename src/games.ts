@@ -44,7 +44,7 @@ const parseGame = (game: Event): Game => {
   const consensusOdds = competition.odds?.find((odd) => odd.provider.name === "consensus");
 
   const { awayTeamOdds, homeTeamOdds } = consensusOdds || {};
-  const [{ team: homeTeam }, { team: awayTeam }] = competition.competitors;
+  const [{ team: homeTeam, score: homeTeamScore }, { team: awayTeam, score: awayTeamScore }] = competition.competitors;
 
   return {
     id: +game.id,
@@ -53,7 +53,7 @@ const parseGame = (game: Event): Game => {
     game_time: game.date,
     home_odds: homeTeamOdds?.moneyLine,
     away_odds: awayTeamOdds?.moneyLine,
-    home_score: undefined,
-    away_score: undefined,
+    home_score: homeTeamScore,
+    away_score: awayTeamScore,
   };
 };
