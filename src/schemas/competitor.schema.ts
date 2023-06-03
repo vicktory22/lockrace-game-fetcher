@@ -4,4 +4,5 @@ export const Competitor = z.object({
   team: z.object({
     id: z.string(),
   }),
+  score: z.number().optional(),
 });
