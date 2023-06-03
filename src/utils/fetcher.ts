@@ -8,6 +8,7 @@ export const fetchWithTimeout = async (url: string, options: FetcherOptions = {}
   const controller = new AbortController();
 
   const timeoutId = setTimeout(() => {
+    /* c8 ignore next */
     controller.abort();
   }, timeout);
 
