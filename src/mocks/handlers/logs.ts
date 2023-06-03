@@ -1,3 +1,4 @@
+/* c8 ignore start */
 import { rest } from "msw";
 
 export const logHandlers = [
@@ -5,3 +6,4 @@ export const logHandlers = [
     return res(ctx.status(204), ctx.set("content-type", "application/json"));
   }),
 ];
+/* c8 ignore stop */
