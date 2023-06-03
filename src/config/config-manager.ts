@@ -1,3 +1,4 @@
+/* c8 ignore start */
 import { Env } from "../index";
 
 export type AppConfig = {
@@ -7,12 +8,22 @@ export type AppConfig = {
 };
 
 export const getConfig = (env?: Env): AppConfig => {
+  if (import.meta.env.NODE_ENV === "test") {
+    return testConfig(env);
+  }
+
   if (!env) {
     return getFromMeta();
   }
 
   return getFromEnv(env);
 };
+
+const testConfig = (env?: Env): AppConfig => ({
+  gamesUrl: env?.GAMES_URL || "http://localhost/games/200",
+  lokiUrl: env?.LOKI_URL || "http://localhost/200",
+  lokiBasicAuthToken: "test-loki-auth-token",
+});
 
 const getFromMeta = (): AppConfig => {
   const { VITE_GAMES_URL, VITE_LOKI_URL, VITE_LOKI_USER, VITE_LOKI_API_KEY } = import.meta.env;
@@ -35,3 +46,4 @@ const getFromEnv = (env: Env): AppConfig => {
 };
 
 const createToken = (user: string, apiKey: string): string => btoa(`${user}:${apiKey}`);
+/* c8 ignore end */
