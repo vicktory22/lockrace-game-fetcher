@@ -64,8 +64,8 @@ describe("buildLokiMessage", () => {
         "streams": [
           {
             "stream": {
-              "app": "lockrace",
               "level": "info",
+              "service": "game-fetcher",
             },
             "values": [
               [
