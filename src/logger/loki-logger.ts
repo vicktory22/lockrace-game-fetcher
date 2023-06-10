@@ -10,21 +10,17 @@ export const lokiLogger = (config: AppConfig): Logger => {
   };
 };
 
-export const sendToLoki = async (payload: string, level: string, config: AppConfig): Promise<void> => {
-  const URL = config.lokiUrl;
-
+export const sendToLoki = async (message: string, level: string, config: AppConfig): Promise<void> => {
   const nanoseconds = String(Date.now() * 1e6);
 
-  const message = JSON.stringify(buildLokiMessage(payload, level, nanoseconds));
-
   const [fetchResponse, fetchNetworkError] = await encasePromise(
-    fetchWithTimeout(URL, {
+    fetchWithTimeout(config.lokiUrl, {
       method: "POST",
       headers: {
         "content-type": "application/json",
         authorization: `Basic ${config.lokiBasicAuthToken}`,
       },
-      body: message,
+      body: JSON.stringify(buildLokiMessage(message, level, nanoseconds)),
     }),
   );
 
@@ -44,7 +40,7 @@ export const buildLokiMessage = (message: string, level: string, nanoseconds: st
     {
       stream: {
         level,
-        app: "lockrace",
+        service: "game-fetcher",
       },
       values: [[nanoseconds, message]],
     },
