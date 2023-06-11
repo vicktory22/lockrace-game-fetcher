@@ -40,7 +40,7 @@ export const buildLokiMessage = (message: string, level: string, nanoseconds: st
     {
       stream: {
         level,
-        service: "game-fetcher",
+        app: "game-fetcher",
       },
       values: [[nanoseconds, message]],
     },
