@@ -64,8 +64,8 @@ describe("buildLokiMessage", () => {
         "streams": [
           {
             "stream": {
+              "app": "game-fetcher",
               "level": "info",
-              "service": "game-fetcher",
             },
             "values": [
               [
