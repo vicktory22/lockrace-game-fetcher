@@ -20,6 +20,13 @@ export const gameHandlers = [
     fetchGamesResponse.events[0].competitions[0].odds = undefined;
     return res(ctx.json(fetchGamesResponse));
   }),
+
+  rest.get("http://localhost/games/no-scores", (_req, res, ctx) => {
+    const fetchGamesResponse = generateFetchGamesResponse();
+    fetchGamesResponse.events[0].competitions[0].competitors[0].score = undefined;
+    fetchGamesResponse.events[0].competitions[0].competitors[1].score = undefined;
+    return res(ctx.json(fetchGamesResponse));
+  }),
 ];
 
 const invalidGame = {
