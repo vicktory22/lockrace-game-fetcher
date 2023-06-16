@@ -67,4 +67,17 @@ describe("getGames", () => {
     expect(away_odds).toBeUndefined();
     expect(home_odds).toBeUndefined();
   });
+
+  it("should handle when there are scores in the paylaod", async () => {
+    const [response, error] = await getGames("http://localhost/games/no-scores");
+
+    expect(error).toBeUndefined();
+
+    assert(response);
+
+    const { away_score, home_score } = response.games[0];
+
+    expect(away_score).toBeUndefined();
+    expect(home_score).toBeUndefined();
+  });
 });

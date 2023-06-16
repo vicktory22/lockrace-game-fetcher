@@ -49,11 +49,13 @@ const parseGame = (game: Event): Game => {
   return {
     id: +game.id,
     home_team_id: +homeTeam.id,
+    home_team_name: homeTeam.name,
     away_team_id: +awayTeam.id,
+    away_team_name: awayTeam.name,
     game_time: game.date,
     home_odds: homeTeamOdds?.moneyLine,
     away_odds: awayTeamOdds?.moneyLine,
-    home_score: homeTeamScore,
-    away_score: awayTeamScore,
+    home_score: homeTeamScore ? +homeTeamScore : undefined,
+    away_score: awayTeamScore ? +awayTeamScore : undefined,
   };
 };
